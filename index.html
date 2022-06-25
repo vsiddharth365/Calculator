@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	<link rel="stylesheet" href="calculator.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<div class="bar"><b>Calculator</b></div>
+	<br>
+	<div class="cin-given"><p></p></div>
+	<br>
+	<div class="cin">
+		<input type="text" name="expression" oninput="keyboard()" placeholder="0">
+	</div>
+	<br>
+	<div class="cout"><p></p></div>
+	<br>
+	<table class="grid" border="5">
+		<tr>
+			<td><button onclick="absolute('abs')">|x|</button></td>
+			<td><button onclick="add_exp('%')">mod</button></td>
+        	<td><button onclick="clear_all()">CE</button></td>
+            <td><button onclick="clear_input()">C</button></td>
+            <td><button onclick="backspace()"><i class="material-icons">&#xe14a;</i></button></td>
+		</tr>
+		<tr>
+			<td><button onclick="xpowy()">x<sup>y</sup></button></td>
+			<td><button onclick="pow(-1)">1/x</button></td>
+            <td><button onclick="pow(2)">x<sup>2</sup></button></td>
+            <td><button onclick="pow(0.5)">x<sup>1/2</sup></button></td>
+            <td><button onclick="add_exp('/')">/</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="logarithm()">log x</button></td>
+			<td><button onclick="add_exp('7')">7</button></td>
+            <td><button onclick="add_exp('8')">8</button></td>
+            <td><button onclick="add_exp('9')">9</button></td>
+            <td><button onclick="add_exp('*')">*</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="factorial()">fact(x)</button></td>
+			<td><button onclick="add_exp('4')">4</button></td>
+            <td><button onclick="add_exp('5')">5</button></td>
+            <td><button onclick="add_exp('6')">6</button></td>
+            <td><button onclick="add_exp('-')">-</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="add_exp('(')">(</button></td>
+			<td><button onclick="add_exp('1')">1</button></td>
+            <td><button onclick="add_exp('2')">2</button></td>
+            <td><button onclick="add_exp('3')">3</button></td>
+            <td><button onclick="add_exp('+')">+</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="add_exp(')')">)</button></td>
+			<td><button onclick="sign()">+/-</button></td>
+            <td><button onclick="add_exp('0')">0</button></td>
+            <td><button onclick="add_exp('.')">.</button></td>
+            <td><button onclick="output()">=</button></td>
+		</tr>
+	</table>
+</body>
+<script src="calculator.js"></script>
+</html>
