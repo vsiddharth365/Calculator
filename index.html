@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -42,7 +41,7 @@
             <td><button onclick="add_exp('*')">*</button></td>
 		</tr>
 		<tr>
-			<td><button onclick="factorial()">fact(x)</button></td>
+			<td><button onclick="factorial()">x!</button></td>
 			<td><button onclick="add_exp('4')">4</button></td>
             <td><button onclick="add_exp('5')">5</button></td>
             <td><button onclick="add_exp('6')">6</button></td>
@@ -63,6 +62,12 @@
             <td><button onclick="output()">=</button></td>
 		</tr>
 	</table>
+	<span>
+		<h4 onclick="history_appearance()">History</h4>
+		<input type="button" onclick="saveFile()" value="Save history to file">
+	</span>
+	<div class="history">
+	</div>
 </body>
 <script src="calculator.js"></script>
 </html>

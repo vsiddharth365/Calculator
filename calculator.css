@@ -38,3 +38,28 @@ tr{
 	text-align: center;
 	height: 50px;
 }
+.history{
+	text-align: center;
+	color: black;
+	display: none;
+}
+h4{
+	text-align: center;
+	text-decoration: underline;
+	color: blue;
+	cursor: pointer;
+}
+input[type=button]{
+	font: 20px;
+	width: auto;
+	float: right;
+	cursor: pointer;
+	padding: 1px;
+	margin-bottom: 4px;
+	margin-top: 4px;
+	height: 40px;
+}
+span{
+	display: flex;
+	justify-content: space-between;
+}

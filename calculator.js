@@ -1,6 +1,39 @@
 let exp="";
 let result=0;
-
+let data="";
+function saveFile(){
+	const textToBLOB = new Blob([data],{type: "text/plain"});
+	var filename = new Date();
+	var month= new Date();
+	month=month.getMonth();
+	var day=new Date();
+	day=day.getUTCDate();
+	var year=new Date();
+	year=year.getUTCFullYear();
+	newdate=year+"/"+month+"/"+day;
+	const sFileName=filename;
+	let newLink=document.createElement("a");
+	newLink.download=new Date();
+	if(window.webkitURL!=null){
+		newLink.href=window.webkitURL.createObjectURL(textToBLOB);
+	}
+	else{
+		newLink.href = window.URL.createObjectURL(textToBLOB);
+        newLink.style.display = "none";
+        document.body.appendChild(newLink);
+	}
+	newLink.click();
+}
+function update_history(x){
+	document.getElementsByClassName("history")[0].innerHTML+=x+"<br>";
+	data=data+x+"\n";
+}
+function history_appearance(){
+	if(document.getElementsByClassName("history")[0].style.display=="block")
+		document.getElementsByClassName("history")[0].style.display="none";
+	else
+		document.getElementsByClassName("history")[0].style.display="block";
+}
 function clear_all(){
 	document.getElementsByClassName("cin-given")[0].innerHTML='';
 	document.getElementsByTagName("input")[0].value='';
@@ -109,6 +142,7 @@ function output() {
 	document.getElementsByClassName("cout")[0].innerHTML=result;
 	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
 	document.getElementsByTagName("input")[0].value='';
+	update_history(exp+" = "+result);
 	exp="";
 }
 function backspace(){
@@ -153,6 +187,7 @@ function pow(x){
 	document.getElementsByClassName("cout")[0].innerHTML=result;
 	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
 	document.getElementsByTagName("input")[0].value='';
+	update_history(exp+" = "+result);
 	exp="";
 }
 function absolute() {
@@ -163,6 +198,7 @@ function absolute() {
 	document.getElementsByClassName("cout")[0].innerHTML=result;
 	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
 	document.getElementsByTagName("input")[0].value='';
+	update_history(exp+" = "+result);
 	exp="";
 }
 function logarithm(){
@@ -178,6 +214,7 @@ function logarithm(){
 	document.getElementsByClassName("cout")[0].innerHTML=result;
 	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
 	document.getElementsByTagName("input")[0].value='';
+	update_history(exp+" = "+result);
 	exp="";
 }
 function factorial() {
@@ -200,6 +237,7 @@ function factorial() {
 	document.getElementsByClassName("cout")[0].innerHTML=result;
 	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
 	document.getElementsByTagName("input")[0].value='';
+	update_history(exp+" = "+result);
 	exp="";
 }
 function xpowy() {
@@ -214,6 +252,7 @@ function xpowy() {
 		document.getElementsByClassName("cout")[0].innerHTML=ans;
 		document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+ans;
 		document.getElementsByTagName("input")[0].value='';
+		update_history(exp+" = "+ans);
 		exp="";
 		document.getElementsByTagName("button")[29].removeEventListener("click",Respond);
 	}
