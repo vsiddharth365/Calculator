@@ -1,8 +1,9 @@
 *{
 	font-family: Verdana;
+	word-wrap: break-word;
 }
 .cout, .cin-given{
-	border: 1px solid black;
+	border: 2px solid black;
 	padding: 8.5px;
 	box-sizing: border-box;
 	color: black;
@@ -10,7 +11,7 @@
 	font-size: 30px;
 }
 .cin input{
-	border: 1px solid black;
+	border: 2px solid black;
 	color: black;
 	box-sizing: border-box;
 	width: 100%;
@@ -21,7 +22,7 @@
 	color: black;
 	text-align: center;
 	font-size: 30px;
-	background-color: green;
+	background-color: lightgreen;
 }
 table{
 	width: 100%;
@@ -34,6 +35,9 @@ button{
 td button{
 	font-size: 30px;
 }
+button:hover{
+	background-color: #2EE59F;
+}
 tr{
 	text-align: center;
 	height: 50px;
@@ -44,10 +48,11 @@ tr{
 	display: none;
 }
 h4{
-	text-align: center;
-	text-decoration: underline;
 	color: blue;
 	cursor: pointer;
+}
+h4:hover{
+	text-decoration: underline;
 }
 input[type=button]{
 	font: 20px;
@@ -59,7 +64,29 @@ input[type=button]{
 	margin-top: 4px;
 	height: 40px;
 }
+input[type=button]:hover{
+	background-color: #2EE59D;
+	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+}
 span{
 	display: flex;
 	justify-content: space-between;
+}
+@media(max-width: 500px){
+	.cout, .cin-given, .cin input, .bar, td button{
+		font-size: 17px;
+	}
+	input[type=button], h4{
+		font-size: 13px;
+		height: 30px;
+	}
+	button, tr{
+		height: 35px;
+	}
+	.cin input{
+		padding: 8px;
+	}
+	.cin-given, .cout{
+		padding: 8px;
+	}
 }
