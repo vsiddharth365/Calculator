@@ -1,6 +1,188 @@
 let exp="";
 let result=0;
 let data="";
+let b=0;
+document.getElementsByTagName('input')[0].addEventListener("keypress",function (event) {
+	if(event.key=="Enter"){
+		event.preventDefault();
+		document.getElementsByTagName('button')[30].click();
+	}
+});
+function common(expression,result){
+	if(Number.isNaN(result))
+		result=undefined;
+	document.getElementsByClassName("cout")[0].innerHTML=result;
+	document.getElementsByClassName("cin-given")[0].innerHTML=expression+" = "+result;
+	document.getElementsByTagName("input")[0].value='';
+	update_history(expression+" = "+result);
+	exp="";
+	b=0;
+	document.getElementsByTagName("button")[20].innerHTML="(";
+}
+function trigonometry(){
+	if(document.getElementsByTagName('button')[11].innerHTML=='7')
+	{
+		document.getElementsByTagName('button')[11].innerHTML="sin";
+		document.getElementsByTagName("button")[11].onclick=function () {
+			result=evaluate(exp);
+			result=Math.sin(result);
+			common(exp,result);
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[11].innerHTML='7';
+		document.getElementsByTagName('button')[11].onclick=function(){
+			add_exp('7');
+		}
+	}
+	if(document.getElementsByTagName('button')[12].innerHTML=='8')
+	{
+		document.getElementsByTagName('button')[12].innerHTML="cos";
+		document.getElementsByTagName('button')[12].onclick=function(){
+			result=evaluate(exp);
+			result=Math.cos(result);
+			common(exp,result);
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[12].innerHTML='8';
+		document.getElementsByTagName('button')[12].onclick=function () {
+			add_exp('8');
+		}
+	}
+	if(document.getElementsByTagName('button')[13].innerHTML=='9')
+	{
+		document.getElementsByTagName('button')[13].innerHTML="tan";
+		document.getElementsByTagName('button')[13].onclick=function(){
+			result=evaluate(exp);
+			result=Math.tan(result);
+			common(exp,result);
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[13].innerHTML='9';
+		document.getElementsByTagName('button')[13].onclick=function () {
+			add_exp('9');
+		}
+	}
+	if(document.getElementsByTagName('button')[16].innerHTML=='4')
+	{
+		document.getElementsByTagName('button')[16].innerHTML="sec";
+		document.getElementsByTagName('button')[16].onclick=function () {
+			result=evaluate(exp);
+			result=Math.cos(result);
+			result=1.0/result;
+			common(exp,result);
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[16].innerHTML='4';
+		document.getElementsByTagName('button')[16].onclick=function(){
+			add_exp('4');
+		}
+	}
+	if(document.getElementsByTagName('button')[17].innerHTML=='5')
+	{
+		document.getElementsByTagName('button')[17].innerHTML="cosec";
+		document.getElementsByTagName('button')[17].onclick=function () {
+			result=evaluate(exp);
+			result=Math.sin(result);
+			result=1.0/result;
+			common(exp,result);
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[17].innerHTML='5';
+		document.getElementsByTagName('button')[17].onclick=function(){
+			add_exp('5');
+		}
+	}
+	if(document.getElementsByTagName('button')[18].innerHTML=='6')
+	{
+		document.getElementsByTagName('button')[18].innerHTML="cot";
+		document.getElementsByTagName('button')[18].onclick=function () {
+			result=evaluate(exp);
+			result=Math.tan(result);
+			result=1.0/result;
+			common(exp,result);
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[18].innerHTML='6';
+		document.getElementsByTagName('button')[18].onclick=function () {
+			add_exp('6');
+		}
+	}
+	if(document.getElementsByTagName('button')[22].innerHTML=='1')
+	{
+		document.getElementsByTagName('button')[22].innerHTML="sin"+`<sup>-1</sup>`;
+		document.getElementsByTagName('button')[22].onclick=function () {
+			result=evaluate(exp);
+			result=Math.asin(result);
+			common(exp,result);
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[22].innerHTML='1';
+		document.getElementsByTagName('button')[22].onclick=function () {
+			add_exp('1');
+		}
+	}
+	if(document.getElementsByTagName('button')[23].innerHTML=='2')
+	{
+		document.getElementsByTagName('button')[23].innerHTML="cos"+`<sup>-1</sup>`;
+		document.getElementsByTagName('button')[23].onclick=function(){
+			result=evaluate(exp);
+			result=Math.acos(result);
+			common(exp,result);
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[23].innerHTML='2';
+		document.getElementsByTagName('button')[23].onclick=function () {
+			add_exp('2');
+		}
+	}
+	if(document.getElementsByTagName('button')[24].innerHTML=='3')
+	{
+		document.getElementsByTagName('button')[24].innerHTML="tan"+`<sup>-1</sup>`;
+		document.getElementsByTagName('button')[24].onclick=function () {
+			result=evaluate(exp);
+			result=Math.atan(result);
+			common(exp,result);
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[24].innerHTML='3';
+		document.getElementsByTagName('button')[24].onclick=function () {
+			add_exp('3');
+		}
+	}
+	if(document.getElementsByTagName('button')[27].innerHTML=="+/-")
+	{
+		document.getElementsByTagName('button')[27].innerHTML=`&#960;`;
+		document.getElementsByTagName('button')[27].onclick=function () {
+			document.getElementsByTagName("input")[0].value+=Math.pi;
+			exp+=Math.pi;
+		}
+	}
+	else
+	{
+		document.getElementsByTagName('button')[27].innerHTML="+/-";
+		document.getElementsByTagName('button')[27].onclick=function () {
+			sign();
+		}
+	}
+}
 function saveFile(){
 	const textToBLOB = new Blob([data],{type: "text/plain"});
 	var filename = new Date();
@@ -39,20 +221,71 @@ function clear_all(){
 	document.getElementsByTagName("input")[0].value='';
 	document.getElementsByClassName("cout")[0].innerHTML='';
 	exp="";
+	b=0;
+	document.getElementsByTagName("button")[20].innerHTML="(";
 }
 function clear_input() {
 	document.getElementsByTagName("input")[0].value='';
 	exp="";
+	b=0;
+	document.getElementsByTagName("button")[20].innerHTML="(";
 }
 function add_exp(ch){
-	exp=exp.concat(ch);
+	if(!((ch>='0' && ch<='9') || ch=='.' || ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch=='%' || ch=='(' || ch==')'))
+		ch="";
+	if(ch=='(')
+		b++;
+	else if(ch==')')
+		b--;
+	if(b>=0)
+		exp=exp.concat(ch);
+	else
+		b=0;
+	if(b)
+		document.getElementsByTagName("button")[20].innerHTML="("+`<sub>${b}</sub>`;
+	else
+		document.getElementsByTagName("button")[20].innerHTML="(";
+	if(exp.length>=2)
+	{
+		let ch=exp[exp.length-2];
+		if(exp[exp.length-1]=='(' && ch!='*' && ch!='/' && ch!='+' && ch!='-' && ch!='%' && ch!='(')
+			exp=exp.slice(0,exp.length-1)+"*"+exp[exp.length-1];
+		else if(exp[exp.length-1]==')' && exp[exp.length-2]=='(')
+			exp=exp.slice(0,exp.length-1)+"0"+exp[exp.length-1];
+	}
 	document.getElementsByTagName("input")[0].value=exp;
 }
 function keyboard(){
-	exp=document.getElementsByTagName("input")[0].value;
+	let x=document.getElementsByTagName("input")[0].value;
+	let ch=x[x.length-1];
+	if(!((ch>='0' && ch<='9') || ch=='.' || ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch=='%' || ch=='(' || ch==')'))
+		x=x.slice(0,-1);
+	if(ch=='(')
+		b++;
+	else if(ch==')')
+		b--;
+	if(b>=0)
+		exp=x;
+	else
+		b=0;
+	if(b)
+		document.getElementsByTagName("button")[20].innerHTML="("+`<sub>${b}</sub>`;
+	else
+		document.getElementsByTagName("button")[20].innerHTML="(";
+	if(exp.length>=2)
+	{
+		let ch=exp[exp.length-2];
+		if(exp[exp.length-1]=='(' && ch!='*' && ch!='/' && ch!='+' && ch!='-' && ch!='%' && ch!='(')
+			exp=exp.slice(0,exp.length-1)+"*"+exp[exp.length-1];
+		else if(exp[exp.length-1]==')' && exp[exp.length-2]=='(')
+			exp=exp.slice(0,exp.length-1)+"0"+exp[exp.length-1];
+	}
+	document.getElementsByTagName("input")[0].value=exp;
 }
 function  evaluate(expression) {
 	let tokens = expression.split('');
+	if(tokens[tokens.length-1]=='-' || tokens[tokens.length-1]=='+')
+        	return undefined;
         let values = [];
         let ops = [];
         for (let i = 0; i < tokens.length; i++)
@@ -68,22 +301,23 @@ function  evaluate(expression) {
                   i--;
             }
             else if (tokens[i] == '(')
-                ops.push(tokens[i]);
+            	ops.push(tokens[i]);
             else if (tokens[i] == ')')
             {
-                while (ops[ops.length - 1] != '(')
-                  values.push(applyOp(ops.pop(),values.pop(),values.pop()));
-                ops.pop();
+                while (ops.length>0 && ops[ops.length - 1] != '(')
+                	values.push(applyOp(ops.pop(),values.pop(),values.pop()));
+                if(ops.length>0)
+	                ops.pop();
             }
             else if (tokens[i] == '+' || tokens[i] == '-' || tokens[i] == '*' || tokens[i] == '/' || tokens[i] == '%')
             {
-                while (ops.length > 0 && hasPrecedence(tokens[i], ops[ops.length - 1]))
+                while (ops.length>0 && hasPrecedence(tokens[i], ops[ops.length - 1]))
                   values.push(applyOp(ops.pop(), values.pop(), values.pop()));
                 ops.push(tokens[i]);
             }
         }
         while (ops.length > 0)
-            values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+        	values.push(applyOp(ops.pop(), values.pop(), values.pop()));
         return values.pop();
 }
 function hasPrecedence(op1, op2){
@@ -112,15 +346,24 @@ function applyOp(op, b, a){
         case '*':
         {
         	if(a==undefined)
+        	{
         		alert("Invalid product");
+        		return undefined;
+        	}
             return a * b;
         }
         case '/':
         {
 			if (b == 0)
+            {
             	alert("Cannot divide by zero");
+            	return undefined;
+            }
 	        if(a==undefined)
-	        	alert("Invalid division");
+	       	{
+	       		alert("Invalid division");
+	       		return undefined;
+	       	}
 	        return parseFloat(a / b, 10);
 	    }
 	    case '%':
@@ -128,7 +371,7 @@ function applyOp(op, b, a){
 	    	if(b==0 || a==undefined || !Number.isInteger(a) || !Number.isInteger(b))
 	    	{
 	    		alert("Invalid mod");
-	    		return "undefined";
+	    		return undefined;
 	    	}
 	    	return parseInt(a % b, 10);
 	    }
@@ -137,15 +380,17 @@ function applyOp(op, b, a){
 }
 function output() {
 	result=evaluate(exp);
-	if(Number.isNaN(result))
-		result="undefined";
-	document.getElementsByClassName("cout")[0].innerHTML=result;
-	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
-	document.getElementsByTagName("input")[0].value='';
-	update_history(exp+" = "+result);
-	exp="";
+	common(exp,result);
 }
 function backspace(){
+	if(exp[exp.length-1]=='(')
+		b--;
+	else if(exp[exp.length-1]==')')
+		b++;
+	if(b)
+		document.getElementsByTagName("button")[20].innerHTML="("+`<sub>${b}</sub>`;
+	else
+		document.getElementsByTagName("button")[20].innerHTML="(";
 	exp=exp.slice(0,-1);
 	document.getElementsByTagName("input")[0].value=exp;
 }
@@ -184,22 +429,14 @@ function pow(x){
 		exp="sqrt("+exp+")";
 	else if(x==-1)
 		exp="1/("+exp+")";
-	document.getElementsByClassName("cout")[0].innerHTML=result;
-	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
-	document.getElementsByTagName("input")[0].value='';
-	update_history(exp+" = "+result);
-	exp="";
+	common(exp,result);
 }
 function absolute() {
 	result=evaluate(exp);
 	if(result<0)
 		result=-1*result;
 	exp="|"+exp+"|";
-	document.getElementsByClassName("cout")[0].innerHTML=result;
-	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
-	document.getElementsByTagName("input")[0].value='';
-	update_history(exp+" = "+result);
-	exp="";
+	common(exp,result);
 }
 function logarithm(){
 	result=evaluate(exp);
@@ -208,14 +445,10 @@ function logarithm(){
 	else
 	{
 		alert("Log not defined");
-		result="undefined";
+		result=undefined;
 	}
 	exp="log "+exp;
-	document.getElementsByClassName("cout")[0].innerHTML=result;
-	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
-	document.getElementsByTagName("input")[0].value='';
-	update_history(exp+" = "+result);
-	exp="";
+	common(exp,result);
 }
 function factorial() {
 	result=evaluate(exp);
@@ -234,26 +467,18 @@ function factorial() {
 		}
 	}
 	exp=exp+"!";
-	document.getElementsByClassName("cout")[0].innerHTML=result;
-	document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+result;
-	document.getElementsByTagName("input")[0].value='';
-	update_history(exp+" = "+result);
-	exp="";
+	common(exp,result);
 }
 function xpowy() {
 	res=evaluate(exp);
 	document.getElementsByClassName("cin-given")[0].innerHTML=res+"^";
 	exp="";
 	document.getElementsByTagName("input")[0].value='';
-	document.getElementsByTagName("button")[29].addEventListener("click", Respond);
+	document.getElementsByTagName("button")[30].addEventListener("click", Respond);
 	function Respond(){
 		exp=res+"^"+result;
 		ans=Math.pow(res,result);
-		document.getElementsByClassName("cout")[0].innerHTML=ans;
-		document.getElementsByClassName("cin-given")[0].innerHTML=exp+" = "+ans;
-		document.getElementsByTagName("input")[0].value='';
-		update_history(exp+" = "+ans);
-		exp="";
-		document.getElementsByTagName("button")[29].removeEventListener("click",Respond);
+		common(exp,ans);
+		document.getElementsByTagName("button")[30].removeEventListener("click", Respond);
 	}
 }
