@@ -247,7 +247,10 @@ function clear_input() {
 }
 function add_exp(ch){
 	if(!((ch>='0' && ch<='9') || ch=='.' || ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch=='%' || ch=='(' || ch==')'))
+	{
 		ch="";
+		alert("Invalid input");
+	}
 	if(ch=='(')
 		b++;
 	else if(ch==')')
@@ -274,7 +277,10 @@ function keyboard(){
 	let x=document.getElementsByTagName("input")[0].value;
 	let ch=x[x.length-1];
 	if(!((ch>='0' && ch<='9') || ch=='.' || ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch=='%' || ch=='(' || ch==')'))
+	{
 		x=x.slice(0,-1);
+		alert("Invalid input");
+	}
 	if(ch=='(')
 		b++;
 	else if(ch==')')
