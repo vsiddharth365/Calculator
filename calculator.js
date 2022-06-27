@@ -8,6 +8,12 @@ document.getElementsByTagName('input')[0].addEventListener("keypress",function (
 		document.getElementsByTagName('button')[30].click();
 	}
 });
+document.getElementsByTagName('input')[0].addEventListener("keydown",function (event) {
+	if(event.key=="Backspace"){
+		event.preventDefault();
+		document.getElementsByTagName('button')[4].click();
+	}
+});
 function common(expression,result){
 	if(Number.isNaN(result))
 		result=undefined;
@@ -26,6 +32,7 @@ function trigonometry(){
 		document.getElementsByTagName("button")[11].onclick=function () {
 			result=evaluate(exp);
 			result=Math.sin(result);
+			exp="sin "+exp;
 			common(exp,result);
 		}
 	}
@@ -42,6 +49,7 @@ function trigonometry(){
 		document.getElementsByTagName('button')[12].onclick=function(){
 			result=evaluate(exp);
 			result=Math.cos(result);
+			exp="cos "+exp;
 			common(exp,result);
 		}
 	}
@@ -58,6 +66,7 @@ function trigonometry(){
 		document.getElementsByTagName('button')[13].onclick=function(){
 			result=evaluate(exp);
 			result=Math.tan(result);
+			exp="tan "+exp;
 			common(exp,result);
 		}
 	}
@@ -75,6 +84,7 @@ function trigonometry(){
 			result=evaluate(exp);
 			result=Math.cos(result);
 			result=1.0/result;
+			exp="sec "+exp;
 			common(exp,result);
 		}
 	}
@@ -92,6 +102,7 @@ function trigonometry(){
 			result=evaluate(exp);
 			result=Math.sin(result);
 			result=1.0/result;
+			exp="cosec "+exp;
 			common(exp,result);
 		}
 	}
@@ -109,6 +120,7 @@ function trigonometry(){
 			result=evaluate(exp);
 			result=Math.tan(result);
 			result=1.0/result;
+			exp="cot "+exp;
 			common(exp,result);
 		}
 	}
@@ -125,6 +137,7 @@ function trigonometry(){
 		document.getElementsByTagName('button')[22].onclick=function () {
 			result=evaluate(exp);
 			result=Math.asin(result);
+			exp="sin"+`<sup>-1</sup>`+" "+exp;
 			common(exp,result);
 		}
 	}
@@ -141,6 +154,7 @@ function trigonometry(){
 		document.getElementsByTagName('button')[23].onclick=function(){
 			result=evaluate(exp);
 			result=Math.acos(result);
+			exp="cos"+`<sup>-1</sup>`+" "+exp;
 			common(exp,result);
 		}
 	}
@@ -157,6 +171,7 @@ function trigonometry(){
 		document.getElementsByTagName('button')[24].onclick=function () {
 			result=evaluate(exp);
 			result=Math.atan(result);
+			exp="tan"+`<sup>-1</sup>`+" "+exp;
 			common(exp,result);
 		}
 	}
@@ -171,8 +186,8 @@ function trigonometry(){
 	{
 		document.getElementsByTagName('button')[27].innerHTML=`&#960;`;
 		document.getElementsByTagName('button')[27].onclick=function () {
-			document.getElementsByTagName("input")[0].value+=Math.pi;
-			exp+=Math.pi;
+			document.getElementsByTagName("input")[0].value+="3.141592653589793238";
+			exp+="3.141592653589793238";
 		}
 	}
 	else
@@ -387,7 +402,7 @@ function backspace(){
 		b--;
 	else if(exp[exp.length-1]==')')
 		b++;
-	if(b)
+	if(b>0)
 		document.getElementsByTagName("button")[20].innerHTML="("+`<sub>${b}</sub>`;
 	else
 		document.getElementsByTagName("button")[20].innerHTML="(";
