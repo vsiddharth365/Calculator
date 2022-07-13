@@ -1,5 +1,6 @@
 *{
 	font-family: Roboto;
+	margin-top: 0px;
 	word-wrap: break-word;
 }
 .cout, .cin-given{
@@ -47,13 +48,6 @@ tr{
 	color: black;
 	display: none;
 }
-h4{
-	color: blue;
-	cursor: pointer;
-}
-h4:hover{
-	text-decoration: underline;
-}
 input[type=button]{
 	font: 20px;
 	width: auto;
@@ -76,7 +70,7 @@ span{
 	.cout, .cin-given, .cin input, .bar, td button{
 		font-size: 17px;
 	}
-	input[type=button], h4{
+	input[type=button]{
 		font-size: 13px;
 		height: 30px;
 	}
