@@ -26,6 +26,10 @@ function common(expression,result){
 	document.getElementsByTagName("button")[20].innerHTML="(";
 }
 function trigonometry(){
+	if(document.getElementsByTagName('button')[26].innerHTML=='Trigonometry')
+		document.getElementsByTagName('button')[26].innerHTML="Algebra";
+	else
+		document.getElementsByTagName('button')[26].innerHTML="Trigonometry";
 	if(document.getElementsByTagName('button')[11].innerHTML=='7')
 	{
 		document.getElementsByTagName('button')[11].innerHTML="sin";
